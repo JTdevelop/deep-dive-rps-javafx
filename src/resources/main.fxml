@@ -8,6 +8,7 @@
 <?import javafx.geometry.Insets?>
 
 <?import javafx.scene.text.Text?>
+<?import edu.cnm.deepdive.rps.view.TerrainView?>
 <GridPane
   xmlns="http://javafx.com/javafx"
   xmlns:fx="http://javafx.com/fxml"
@@ -23,15 +24,15 @@
 
   <columnConstraints>
     <ColumnConstraints
-      percentWidth="33.3" />
+      percentWidth="33.3"/>
     <ColumnConstraints
-      percentWidth="33.4" />
+      percentWidth="33.4"/>
   </columnConstraints>
 
   <rowConstraints>
     <RowConstraints
       minHeight="24"
-      maxHeight="24" />
+      maxHeight="24"/>
     <RowConstraints
       minHeight="600"
       maxHeight="600"/>
@@ -45,7 +46,7 @@
     GridPane.columnIndex="0"
     GridPane.valignment="BASELINE"
     GridPane.halignment="LEFT"
-    onAction="#fitView" />
+    onAction="#fitView"/>
 
   <Text
     fx:id="iterationsLabel"
@@ -53,7 +54,7 @@
     GridPane.columnIndex="1"
     GridPane.valignment="BASELINE"
     GridPane.halignment="CENTER"
-    text="%iterations_text" />
+    text="%iterations_text"/>
 
   <ScrollPane
     fx:id="viewScroller"
@@ -68,7 +69,11 @@
     maxHeight="600"
     hbarPolicy="NEVER"
     vbarPolicy="NEVER">
-    <!-- TODO Add TerrainView -->
+
+    <TerrainView
+      fx:id="terrainView"
+      width="1200"
+      height="1200"/>
 
   </ScrollPane>
 
@@ -86,7 +91,8 @@
     GridPane.columnIndex="0"
     GridPane.halignment="CENTER"
     GridPane.valignment="TOP"
-    maxWidth="180" />
+    maxWidth="180"
+    value="5"/>
 
   <Label
     text="%speed_slider_text"
@@ -95,7 +101,7 @@
     GridPane.rowIndex="2"
     GridPane.columnIndex="0"
     GridPane.halignment="CENTER"
-    GridPane.valignment="BOTTOM" />
+    GridPane.valignment="BOTTOM"/>
 
   <Slider
     fx:id="mixingSlider"
@@ -107,12 +113,12 @@
     showTickMarks="true"
     showTickLabels="false"
     blockIncrement="10"
-    value="10"
+    value="0"
     maxWidth="180"
     GridPane.rowIndex="3"
     GridPane.columnIndex="1"
     GridPane.halignment="CENTER"
-    GridPane.valignment="TOP" />
+    GridPane.valignment="TOP"/>
 
   <Label
     text="%mixing_slider_text"
@@ -121,7 +127,7 @@
     GridPane.rowIndex="2"
     GridPane.columnIndex="1"
     GridPane.halignment="CENTER"
-    GridPane.valignment="BOTTOM" />
+    GridPane.valignment="BOTTOM"/>
 
   <Button
     fx:id="start"
@@ -130,7 +136,7 @@
     GridPane.halignment="CENTER"
     prefWidth="100"
     text="%run_text"
-    onAction="#start" />
+    onAction="#start"/>
 
   <Button
     fx:id="stop"
@@ -140,7 +146,7 @@
     prefWidth="100"
     text="%stop_text"
     disable="true"
-    onAction="#stop" />
+    onAction="#stop"/>
 
   <Button
     fx:id="reset"
@@ -149,7 +155,7 @@
     GridPane.halignment="CENTER"
     prefWidth="100"
     text="%reset_text"
-    onAction="#reset" />
+    onAction="#reset"/>
 
 </GridPane>
 

@@ -1,6 +1,5 @@
 package edu.cnm.deepdive.rps.model;
 
-import java.util.Arrays;
 import java.util.Random;
 
 // This is a regular class
@@ -14,15 +13,14 @@ public class Terrain {
       {1, 0}
   };
 
-  private final Object lock = new Object();
   private Breed[][] cells;
   private Breed[][] view;
   private Random rng;
+  private long iterations;
 
   public Terrain(Random rng) {
     this.rng = rng;
     cells = new Breed[DEFAULT_SIZE][DEFAULT_SIZE];
-    view = new Breed[DEFAULT_SIZE][];
     reset();
   }
 
@@ -32,28 +30,24 @@ public class Terrain {
         row[i] = Breed.random(this.rng);
       }
     }
-    for (int i = 0; i < cells.length; i++) {
-      view[i] = Arrays.copyOf(cells[i], cells.length);
-    }
+    iterations = 0;
   }
 
   public void iterate(int steps) {
-    synchronized (lock) {
-      for (int i = 0; i < steps; i++) {
-        int playerRow = rng.nextInt(cells.length);
-        int playerCol = rng.nextInt(cells[playerRow].length);
-        Breed player = cells[playerRow][playerCol];
-        int[] opponentLocation = getRandomNeighbor(playerRow, playerCol);
-        Breed opponent = cells[opponentLocation[0]][opponentLocation[1]];
-        if (player.play(opponent) == player) {
-          cells[opponentLocation[0]][opponentLocation[1]] = player;
-          view[opponentLocation[0]][opponentLocation[1]] = player;
-        } else {
-          cells[playerRow][playerCol] = opponent;
-          view[playerRow][playerCol] = opponent;
-        }
+
+    for (int i = 0; i < steps; i++) {
+      int playerRow = rng.nextInt(cells.length);
+      int playerCol = rng.nextInt(cells[playerRow].length);
+      Breed player = cells[playerRow][playerCol];
+      int[] opponentLocation = getRandomNeighbor(playerRow, playerCol);
+      Breed opponent = cells[opponentLocation[0]][opponentLocation[1]];
+      if (player.play(opponent) == player) {
+        cells[opponentLocation[0]][opponentLocation[1]] = player;
+      } else {
+        cells[playerRow][playerCol] = opponent;
       }
     }
+    iterations += steps;
   }
 
   protected int[] getRandomNeighbor(int row, int col) {
@@ -64,9 +58,10 @@ public class Terrain {
   }
 
   public Breed[][] getCells() {
-    //FIXME - Deal with gotcha.
-    synchronized (lock) {
-      return view;
-    }
+    return cells;
+  }
+
+  public long getIterations() {
+    return iterations;
   }
 }
