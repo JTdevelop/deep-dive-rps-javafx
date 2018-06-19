@@ -5,7 +5,7 @@ import java.util.Random;
 // This is a regular class
 public class Terrain {
 
-  public static final int DEFAULT_SIZE = 50;
+  public static final int DEFAULT_SIZE = 40;
 
   private static final int[][] NEIGHBOR_OFFSETS = {
       {-1, 0},
@@ -64,4 +64,8 @@ public class Terrain {
   public long getIterations() {
     return iterations;
   }
+
+  // TODO add public void mixing(int pairs) method. this should select a number of random pairs
+  // not necessarily adjacent and swap the two members in each pair.
+
 }
