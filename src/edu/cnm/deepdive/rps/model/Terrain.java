@@ -65,7 +65,9 @@ public class Terrain {
     return iterations;
   }
 
-  // TODO add public void mixing(int pairs) method. this should select a number of random pairs
-  // not necessarily adjacent and swap the two members in each pair.
+  //  this should select a number of random pairs
+  //
+//  switch breed cell first
+//  switch breed cell second
 
 }

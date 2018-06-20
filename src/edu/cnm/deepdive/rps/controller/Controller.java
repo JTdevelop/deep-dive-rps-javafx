@@ -126,8 +126,7 @@ public class Controller {
     public void run() {
       while (running) {
         synchronized (lock) {
-          // TODO invoke mixing method of model, using mixingSLider.getValue() to
-          // control how often/how many pairs get mixed.
+          //terrain = MIX
           terrain.iterate(STEPS_PER_ITERATION);
         }
         try {
