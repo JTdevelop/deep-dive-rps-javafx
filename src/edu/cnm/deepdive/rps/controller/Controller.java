@@ -126,7 +126,7 @@ public class Controller {
     public void run() {
       while (running) {
         synchronized (lock) {
-          //terrain = MIX
+          //terrain = MIX IT UP
           terrain.iterate(STEPS_PER_ITERATION);
         }
         try {
