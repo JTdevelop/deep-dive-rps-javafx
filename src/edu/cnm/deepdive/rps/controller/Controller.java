@@ -127,6 +127,7 @@ public class Controller {
       while (running) {
         synchronized (lock) {
           //terrain = MIX IT UP
+          terrain.mix((int) mixingSlider.getValue());
           terrain.iterate(STEPS_PER_ITERATION);
         }
         try {
